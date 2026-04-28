@@ -1,3 +1,5 @@
+import auth
+
 def adminMenu():
     print("*"*40)
     print("\n  1.Add new Course")
@@ -17,12 +19,6 @@ def adminMenu():
             print("Please Enter valid option according to menue")
     except:
         print("Enter only numeric options mentioned in menue")
-
-
-
-
-
-
 
 def studentMenu():
     print("*" * 40)
@@ -44,3 +40,12 @@ def studentMenu():
             print("Please Enter valid option according to menue")
     except:
         print("Enter only numeric options mentioned in menue")
+check = auth.singin()
+
+
+if check["logedin"] and check["role"] == "admin":
+    adminMenu()
+elif check["logedin"] and check["role"] == "student":
+    studentMenu()
+
+
