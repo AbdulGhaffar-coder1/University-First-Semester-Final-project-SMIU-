@@ -1,11 +1,12 @@
-# import json
+import json
 
-# def readDept():
-#     try:
-#         with open("departments.json","r") as file:
-#             departments = json.load(file)
-#             return departments
-#     except FileNotFoundError:
+def readDept():
+    try:
+        with open("departments.json","r") as file:
+            departments = json.load(file)
+            return departments
+    except FileNotFoundError:
+        
 import json
 def read():
     try:
