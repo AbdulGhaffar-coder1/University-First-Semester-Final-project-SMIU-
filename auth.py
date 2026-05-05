@@ -1,4 +1,8 @@
 import json
+import tkinter as tk
+root = tk.Tk()
+root.geometry("1000x800")
+
 
 def read():
     try:
@@ -13,10 +17,22 @@ def read():
 
 def singup():
     users = read()
-    name = input("Enter your name : ")
-    email = input("Enter your email here : ")
-    role = input("Are you student or Admin: ")
-    password = input("Enter your Password here : ")
+    nameLable = tk.Label(root,text="Name : ")
+    nameLable.grid(row=0,column=0)
+    name = tk.Entry(root)
+    name.grid(column=1,row=0)
+    emailLable = tk.Label(root,text="Email :")
+    emailLable.grid(column=0,row=1)
+    email = tk.Entry(root)
+    email.grid(row=1,column=1)
+    roleLable = tk.Label(root,text="Role : ")
+    roleLable.grid(column=0,row=2)
+    role = tk.Entry(root)
+    role.grid(column=1,row=2)
+    passwordLable = tk.Label(root,text="Password :")
+    passwordLable.grid(column=0,row=3)
+    password = tk.Entry(root)
+    password.grid(column=1,row=3)
 
     
     for user in users:
@@ -93,3 +109,5 @@ def main():
     menu()
     
 main()
+
+root.mainloop()
