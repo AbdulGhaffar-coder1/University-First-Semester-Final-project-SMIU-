@@ -1,8 +1,14 @@
 [
     {
-        "name": "Muhhmad Ahsan",
-        "email": "mdahsan@gmail.com",
-        "password": "789654",
+        "name": "abdul",
+        "email": "ghaffar",
+        "password": "1234",
         "role": "student"
+    },
+    {
+        "name": "",
+        "email": "",
+        "password": "",
+        "role": ""
     }
 ]
