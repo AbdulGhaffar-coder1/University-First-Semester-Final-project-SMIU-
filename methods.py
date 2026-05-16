@@ -66,6 +66,63 @@ def new_course():
       department["courses"].append(course)
   print(f'New course {course} added successfully')
 
+
+import methods
+import json
+
+def Application():
+    print("Application Form")
+    name = input("Enter your name : ")
+    F_name = input("Enter your Father's name : ")
+    email = input("Enter your email address : ")
+    Dob = input("Enter your DOB (DD|MM|YYYY) : ")
+    gender = input("Enter (Male/Female) : ")
+    departments = readDept()
+    num = 1
+    
+    for department in departments:
+        print(f" {num}. Department Name : {department['Depart']}")
+        num += 1
+        
+    department = input("Enter Department you want choose : ")
+    student = {
+        "name": name,
+        "Fname": F_name,
+        "email": email,
+        "DOB": Dob,
+        "gender": gender,
+        "dept": {
+            "dept": department,
+        }
+    }
+    
+    with open('students.json', 'w') as file:
+        json.dump(student, file, indent=5)
+    print("Successfully Registered")
+
+
+
+def courseSelection():
+    departments = readDept()
+    dept = input("Enter Your department name : ")
+    for department in departments:
+       if  department["Depart"] == dept:
+           number = 1
+           for course in department["courses"]:
+               print(f'{number}. {course}')
+    courses = []
+    print("Enter 5 courses from above One by one ")
+    for i in range(1,5):
+        course = input("Enter Course name to select : ")
+        courses.append(course)
+    
+
+    
+    
+    with open('students.json', 'w') as file:
+        json.dump(courses, file, indent=5)
+    print("Successfully Registered")
+
 def remove_student():
     users = read()
     found = False
