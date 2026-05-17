@@ -88,10 +88,21 @@ def Application():
             "dept": department,
         }
     }
+    students = readstudents()
+    students.append(student)
     
     with open('students.json', 'w') as file:
-        json.dump(student, file, indent=5)
+        json.dump(students, file, indent=5)
     print("Successfully Registered")
+
+
+def readstudents():
+    try:
+        with open('students.json', 'r') as file:
+          students = json.load(file)
+          return students
+    except (FileNotFoundError,json.JSONDecodeError):
+        return []
 
 
 
@@ -110,9 +121,7 @@ def courseSelection():
     for i in range(1,6):
         course = input("Enter Course name to select : ")
         courses.append(course)
-
-    with open('students.json', 'r') as file:
-        students = json.load(file)
+    students = readstudents()
     for student in students:
         if gmail == student['email']:
             print("Yes")
@@ -124,12 +133,12 @@ def courseSelection():
     print("Successfully Registered")
 
 def remove_student():
-    users = read()
+    students = readstudents()
     found = False
     stu_name = input("Enter student name to remove: ")
     stu_email = input("Enter student email: ")
-    for user in users:
-     if stu_name == user["name"] and stu_email == user["email"]:
+    for student in students:
+     if stu_name == student["name"] and stu_email == student["email"]:
             print("\n Student Record Found")
             print(f"Student Name: {stu_name}")
             print(f"Student email: {stu_email}")
@@ -155,9 +164,9 @@ def remove_student():
             
             confirm = input("Are you sure you want to remove student (yes/no):").lower()
             if confirm == "yes":
-                users.remove(user)
-                with open("users.json", "w") as file:
-                    json.dump(users, file, indent=4)
+                students.remove(student)
+                with open("students.json", "w") as file:
+                    json.dump(students, file, indent=4)
                 print("\n Student Removed Successfully")
             else:
                 print("\nRemove cancelled.")

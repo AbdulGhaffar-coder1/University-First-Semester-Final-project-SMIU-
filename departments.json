@@ -7,7 +7,18 @@
             "English",
             "PF",
             "Math1",
-            "Calculus"
+            "Calculus",
+            "Database"
+        ]
+    },
+    {
+        "Depart": "Artificial Intelligence",
+        "courses": [
+            "ICT",
+            "Discrete",
+            "English",
+            "PF",
+            "Math1"
         ]
     }
 ]

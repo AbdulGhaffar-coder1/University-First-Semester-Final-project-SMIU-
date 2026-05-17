@@ -14,7 +14,7 @@
     {
         "name": "Abdul Ghaffar",
         "email": "ghaffarwandiar1@gmail.com",
-        "password": "1234",
+        "password": "12345",
         "role": "student"
     },
     {
@@ -22,5 +22,11 @@
         "email": "ahsan@gmail.com",
         "password": "12345",
         "role": "admin"
+    },
+    {
+        "name": "Ghaffar",
+        "email": "ghaffar@gmail.com",
+        "password": "123456",
+        "role": "student"
     }
 ]

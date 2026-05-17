@@ -1,35 +1,44 @@
-# def payment(courses):
-# 	total = 0 
-# 	print("*"*30)
-# 	print("Your courses with fee are these ")
-# 	for course in courses:
-# 	  print(f"Course Name : {course} ||  Price of course : {15000}")
-# 	  total+=15000
-# 	return total
-# selected_courses = ["Discrete","PF","Maths1","English","ICT"]
+import methods
+import json
 
-# def receipt():
-		
-# 	print("")
-# 	print("---------Fee Receipt-------------")
-# 	for course in selected_courses:
-# 		print(f"Course Name : {course} ||  Price of course : {15000}")
-# 	print(f"          Total :{15000*len(selected_courses)} ")
-# 	print(f"          Paid : {15000*len(selected_courses)} ")
-# 	print("          Balance : 0 ")
-# 	print("------------------------------------")
+def payment():
+    students = methods.readstudents()
+    gmail = input("Verify your gmail here : ")
+    selected_courses = []
+    
+    for student in students:
+        if student["email"] == gmail:  # ← also fix "gmail" to "email" (your key is "email")
+            selected_courses = student['dept']['courses']
+    
+    if not selected_courses:
+        print("No courses found for this email!")
+        return
 
-# print(f"Your total dues are {15000*len(selected_courses)}")
-# while True:
-# 	user = int(input(f"Pay {15000*len(selected_courses)} Rs here: "))
-# 	if user == 15000*len(selected_courses):
-# 		print("fee has paid")
-# 		print(" ")
-# 		receipt()
-# 		break
-# 	elif user > 15000*len(selected_courses):
-# 	    print("Please pay the fee as it is not more than that")
-# 	else:
-# 		print("Please pay whole fee")
-# print("*"*30)
+    total = 15000 * len(selected_courses)
+    print("*" * 30)
+    print("Your courses with fee are these: ")
+    for course in selected_courses:
+        print(f"Course Name: {course} || Price: 15000")
 
+    print(f"Your total dues are {total}")
+    
+    while True:
+        user = int(input(f"Pay {total} Rs here: "))
+        if user == total:
+            print("Fee has been paid!")
+            receipt(selected_courses, total)
+            break
+        elif user > total:
+            print("Please pay exact amount, not more!")
+        else:
+            print("Please pay the full fee!")
+    print("*" * 30)
+
+def receipt(selected_courses, total):
+    print("\n---------Fee Receipt-------------")
+    for course in selected_courses:
+        print(f"Course Name: {course} || Price: 15000")
+    print(f"          Total : {total}")
+    print(f"          Paid  : {total}")
+    print(f"          Balance : 0")
+    print("------------------------------------")
