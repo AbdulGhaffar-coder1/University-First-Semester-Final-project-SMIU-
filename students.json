@@ -1,0 +1,10 @@
+{
+     "name": "Abdul Ghaffar",
+     "Fname": "Ghulam Sarwar",
+     "email": "ghaffarwandiar1@gmail.com",
+     "DOB": "05/03/2007",
+     "gender": "Male",
+     "dept": {
+          "dept": "Software Engineering"
+     }
+}

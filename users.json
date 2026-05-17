@@ -10,5 +10,17 @@
         "email": "",
         "password": "",
         "role": ""
+    },
+    {
+        "name": "Abdul Ghaffar",
+        "email": "ghaffarwandiar1@gmail.com",
+        "password": "1234",
+        "role": "student"
+    },
+    {
+        "name": "Ahsan",
+        "email": "ahsan@gmail.com",
+        "password": "12345",
+        "role": "admin"
     }
 ]

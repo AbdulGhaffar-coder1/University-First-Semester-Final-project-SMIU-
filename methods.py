@@ -1,25 +1,6 @@
 import json
 
-# def readDept():
-#     try:
-#         with open("departments.json","r") as file:
-#             departments = json.load(file)
-#             return departments
-#     except FileNotFoundError:
-#         return {}
-    
 
-
-
-# def addDept():
-#     try:
-#         with open("departments.json","w") as file:
-#             departments = json.load(file)
-#             return departments
-#     except FileNotFoundError:
-#         return {}
-
-import json
 
 def readDept():
     try:
@@ -31,23 +12,25 @@ def readDept():
 
 def newDept():
     departments = readDept()
-    depart_name = input("Enter the name of department: ")
-    for deaprtment in departments:
-        if deaprtment['Depart'] == depart_name:
+    dept = input("Enter the name of department: ")
+    for department in departments:
+        if department['Depart'] == dept:
             print("Department Already Exist add new one ")
             return
-
     numberCourse = int(input("How many course will you add : "))
     courses = []
 
-    for i in numberCourse:
-        course = input(f"Enter course no {i}: ")
+    for i in range(numberCourse):
+        course = input(f"Enter course no {i+1}: ")
         courses.append(course)
+    departments.append({
+        "Depart": dept,
+        "courses":courses
+           })
     with open("departments.json","w") as file:
-        json.dump({"Depart": depart_name,"Courses": courses},file, indent=4)
+        json.dump(departments,file, indent=4)
 
-        
-import json
+     
 def read():
     try:
         with open("users.json", "r") as file:
@@ -59,13 +42,23 @@ def read():
 
 def new_course():
   departments = readDept()
-  dept = input("Enter department name to add new course : ")
-  course = input("Enter course name : ")
+  dept = input("Enter department name to add new course: ")
+  course = input("Enter course name: ")
+    
   for department in departments:
-    if department["Depart"] == dept:
-      department["courses"].append(course)
-  print(f'New course {course} added successfully')
-
+        if department["Depart"] == dept:
+            if course in department['courses']:
+                
+                print("Course Already Exist add other course")
+                return
+            department["courses"].append(course)
+            print(f'New course {course} added successfully')
+            break
+  else:
+    print("Department not Available")
+            
+  with open("departments.json", "w") as file:
+        json.dump(departments, file, indent=4)
 
 import methods
 import json
@@ -105,22 +98,29 @@ def Application():
 def courseSelection():
     departments = readDept()
     dept = input("Enter Your department name : ")
+    gmail = input("Enter your gmail to verify : ")
     for department in departments:
        if  department["Depart"] == dept:
            number = 1
            for course in department["courses"]:
                print(f'{number}. {course}')
+               number += 1
     courses = []
     print("Enter 5 courses from above One by one ")
-    for i in range(1,5):
+    for i in range(1,6):
         course = input("Enter Course name to select : ")
         courses.append(course)
-    
+
+    with open('students.json', 'r') as file:
+        students = json.load(file)
+    for student in students:
+        if gmail == student['email']:
+            print("Yes")
+            student['dept']['courses'] = courses
 
     
-    
     with open('students.json', 'w') as file:
-        json.dump(courses, file, indent=5)
+        json.dump(students, file, indent=5)
     print("Successfully Registered")
 
 def remove_student():
@@ -167,7 +167,6 @@ def remove_student():
 
     if not found:
         print("Student not found or already removed.")
-remove_student()
 
 
 
